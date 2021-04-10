@@ -14,7 +14,9 @@
             });
             return paramKeyPair;
         }
-        var dataLayer = dataLayer||[];
+        var dataLayer = dataLayer||[{
+            trackingID: 'UA-194236226-1'
+        }];
         var searchParam = document.location.search;
         var paramList = parseParam(searchParam);
         paramList.map(item=>{
