@@ -25,7 +25,7 @@
         }];
         var searchParam = document.location.search;
         var paramList = parseParam(searchParam);
-        if(searchParam!=null){
+        if(paramList!=null){
             paramList.map(item=>{
                 dataLayer.push(item);
             });
