@@ -3,29 +3,35 @@
 <head>
     <script type="text/javascript">
         window.parseParam = function (searchParam){
-            var paramList = searchParam.replace("?","").split("&");
-            var paramKeyPair = [];
-            paramList.map(item=>{
-                var obj = {}
-                var keyPair = item.split("=");
-                if(keyPair.length!=0){
-                    eval("obj."+keyPair[0]+"="+keyPair[1]+";");
-                    paramKeyPair.push( obj);
-                }
+            if(searchParam!=""&&searchParam!=null){
+                var paramList = searchParam.replace("?","").split("&");
+                var paramKeyPair = [];
+                paramList.map(item=>{
+                    var obj = {}
+                    var keyPair = item.split("=");
+                    if(keyPair.length!=0){
+                        eval("obj."+keyPair[0]+"="+keyPair[1]+";");
+                        paramKeyPair.push( obj);
+                    }
 
 
-            });
-            return paramKeyPair;
+                });
+                return paramKeyPair;
+            }
+            return null;
         }
         var dataLayer = dataLayer||[{
             trackingID: 'UA-194236226-1'
         }];
         var searchParam = document.location.search;
         var paramList = parseParam(searchParam);
-        paramList.map(item=>{
-            dataLayer.push(item);
-        });
-        console.log(dataLayer);
+        if(searchParam!=null){
+            paramList.map(item=>{
+                dataLayer.push(item);
+            });
+            console.log(dataLayer);
+        }
+
     </script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
