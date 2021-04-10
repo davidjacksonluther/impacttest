@@ -5,18 +5,14 @@
         window.parseParam = function (searchParam){
             if(searchParam!=""&&searchParam!=null){
                 var paramList = searchParam.replace("?","").split("&");
-                var paramKeyPair = [];
                 paramList.map(item=>{
                     var obj = {}
                     var keyPair = item.split("=");
                     if(keyPair.length!=0){
                         eval("obj."+keyPair[0]+"="+keyPair[1]+";");
-                        paramKeyPair.push( obj);
                     }
-
-
                 });
-                return paramKeyPair;
+                return obj;
             }
             return null;
         }
@@ -24,11 +20,9 @@
             trackingID: 'UA-194236226-1'
         }];
         var searchParam = document.location.search;
-        var paramList = parseParam(searchParam);
-        if(paramList!=null){
-            paramList.map(item=>{
-                dataLayer.push(item);
-            });
+        var param = parseParam(searchParam);
+        if(param!=null){
+            dataLayer.push(param);
             console.log(dataLayer);
         }
 
