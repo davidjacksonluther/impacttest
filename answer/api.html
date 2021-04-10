@@ -24,7 +24,7 @@
                     <fieldset class="layui-elem-field">
                         <legend>Sample</legend>
                         <div class="layui-field-box">
-                            <button type="button" class="layui-btn-checked" onclick="window.sendRequest();">Send Request</button>
+                            <button type="button" class="layui-btn layui-btn-normal" onclick="window.sendRequest();">Send Request</button>
                         </div>
                     </fieldset>
                 </div>
@@ -37,6 +37,7 @@
     layui.use(["element","layer"],function () {
         var layer = layui.layer;
         window.sendRequest = function () {
+
             $.get('http://httpbin.org/get',{},function (){
                 layer.open();
             });
