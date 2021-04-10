@@ -82,6 +82,8 @@
             var paramString = postJsonParam_To_GetParam(param);
             layer.open({
                 type:2,
+                title:"Message",
+                btn:["OK"],
                 content:'https://httpbin.org/get'+paramString,
                 area:["80vw","80vh"],
                 maxmin:true
