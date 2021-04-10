@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="text/javascript">
+        window.parseParam = function (searchParam){
+            var paramList = searchParam.replace("?","").split("&");
+            var paramKeyPair = [];
+            paramList.map(item=>{
+                var obj = {}
+                var keyPair = item.split("=");
+                eval("obj."+keyPair[0]+"="+keyPair[1]+";");
+                paramKeyPair.push( obj);
+
+            });
+            return paramKeyPair;
+        }
+        var dataLayer = dataLayer||[];
+        var searchParam = document.location.search;
+        var paramList = parseParam(searchParam);
+        paramList.map(item=>{
+            dataLayer.push(item);
+        });
+        console.log(dataLayer);
+    </script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -34,7 +55,17 @@
         <div class="layui-collapse" lay-accordion>
             <div class="layui-colla-item">
                 <h2 class="layui-colla-title">Answer</h2>
-                <div class="layui-colla-content layui-show">HAHAHA</div>
+                <div class="layui-colla-content layui-show">
+                    <fieldset class="layui-elem-field">
+                        <legend>Sample Page</legend>
+                        <div class="layui-field-box">
+                            <p>Create a test page, using any hosting option you prefer - free sites can be created using https://pages.github.com/ with a free Github account, or sites such as zeit or surge.
+                            </p>
+                            <p>Implement Google Tag Manager on the site. Create logic that adds the key and value from query string parameters to the GTM data layer.
+                            </p>
+                        </div>
+                    </fieldset>
+                </div>
             </div>
         </div>
     </div>
