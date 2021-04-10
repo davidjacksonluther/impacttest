@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="text/javascript">
+        window.parseParam = function (searchParam){
+            if(searchParam!=""&&searchParam!=null){
+                var obj = {};
+                var paramList = searchParam.replace("?","").split("&");
+                paramList.map(item=>{
+                    var keyPair = item.split("=");
+                    if(keyPair.length!=0){
+                        eval("obj."+keyPair[0]+"='"+keyPair[1]+"';");
+                    }
+                });
+                return obj;
+            }
+            return null;
+        }
+        window.dataLayer = window.dataLayer||[{
+            trackingID: 'UA-194236226-1',
+            pageName:"API Implementation Page"
+        }];
+        var searchParam = document.location.search;
+        var param = parseParam(searchParam);
+        if(param!=null){
+            dataLayer.push(param);
+            console.log(dataLayer);
+        }
+
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NMDTGQ3');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <title>API Implementation</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
     <link rel="stylesheet" href="../layui/css/index.css">
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMDTGQ3"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
     <div class="test-text layui-container">
         <fieldset class="layui-elem-field">
             <legend>API Implementation</legend>
@@ -32,17 +70,23 @@
         </div>
     </div>
 <script src="../layui/layui.js"></script>
-<script src="../layui/layui.all.js"></script>
 <script type="text/javascript" src="../layui/js/jquery.js"></script>
-
+<script src="../layui/js/util.js"></script>
 <script type="text/javascript">
     layui.use(["element","layer"],function () {
         var layer = layui.layer;
         window.sendRequest = function () {
-
-            $.get('https://httpbin.org/get',{},function (res){
-                layer.alert(JSON.stringify(res));
+            var param = {};
+            param.code = google_tag_manager["GTM-NMDTGQ3"].dataLayer.get('code');
+            param.data = google_tag_manager["GTM-NMDTGQ3"].dataLayer.get('data');
+            var paramString = postJsonParam_To_GetParam(param);
+            layer.open({
+                type:2,
+                content:'https://httpbin.org/get'+paramString,
+                area:["80vw","80vh"],
+                maxmin:true
             });
+
         }
     });
 </script>

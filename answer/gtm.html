@@ -9,7 +9,7 @@
                 paramList.map(item=>{
                     var keyPair = item.split("=");
                     if(keyPair.length!=0){
-                        eval("obj."+keyPair[0]+"="+keyPair[1]+";");
+                        eval("obj."+keyPair[0]+"='"+keyPair[1]+"';");
                     }
                 });
                 return obj;
