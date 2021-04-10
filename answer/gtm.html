@@ -16,8 +16,9 @@
             }
             return null;
         }
-        var dataLayer = dataLayer||[{
-            trackingID: 'UA-194236226-1'
+        window.dataLayer = dataLayer||[{
+            trackingID: 'UA-194236226-1',
+            pageName:"GTM Page"
         }];
         var searchParam = document.location.search;
         var param = parseParam(searchParam);
