@@ -20,14 +20,27 @@
         <div class="layui-collapse" lay-accordion>
             <div class="layui-colla-item">
                 <h2 class="layui-colla-title">Answer</h2>
-                <div class="layui-colla-content layui-show">HAHAHA</div>
+                <div class="layui-colla-content layui-show">
+                    <fieldset class="layui-elem-field">
+                        <legend>Sample</legend>
+                        <div class="layui-field-box">
+                            <button type="button" class="layui-btn-checked" onclick="window.sendRequest();">Send Request</button>
+                        </div>
+                    </fieldset>
+                </div>
             </div>
         </div>
     </div>
 <script src="../layui/layui.js"></script>
+<script type="text/javascript" src="../layui/js/jquery.js"></script>
 <script type="text/javascript">
-    layui.use(["element"],function () {
-        var element = layui.element;
+    layui.use(["element","layer"],function () {
+        var layer = layui.layer;
+        window.sendRequest = function () {
+            $.get('http://httpbin.org/get',{},function (){
+                layer.open();
+            });
+        }
     });
 </script>
 </body>
