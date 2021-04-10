@@ -23,11 +23,7 @@
         var searchParam = document.location.search;
         var param = parseParam(searchParam);
         if(param!=null){
-            var obj = {
-                urlParam:{}
-            }
-            obj.urlParam = param;
-            dataLayer.push(obj);
+            dataLayer.push(param);
             console.log(dataLayer);
         }
 
