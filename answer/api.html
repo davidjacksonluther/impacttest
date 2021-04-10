@@ -38,8 +38,8 @@
         var layer = layui.layer;
         window.sendRequest = function () {
 
-            $.get('https://httpbin.org/get',{},function (){
-                layer.open();
+            $.get('https://httpbin.org/get',{},function (res){
+                layer.alert(JSON.stringify(res));
             });
         }
     });
