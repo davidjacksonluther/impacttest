@@ -8,8 +8,11 @@
             paramList.map(item=>{
                 var obj = {}
                 var keyPair = item.split("=");
-                eval("obj."+keyPair[0]+"="+keyPair[1]+";");
-                paramKeyPair.push( obj);
+                if(keyPair.length!=0){
+                    eval("obj."+keyPair[0]+"="+keyPair[1]+";");
+                    paramKeyPair.push( obj);
+                }
+
 
             });
             return paramKeyPair;
