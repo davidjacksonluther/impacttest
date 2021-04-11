@@ -42,6 +42,10 @@
     <title>Javascript Tag mplementation</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
     <link rel="stylesheet" href="../layui/css/index.css">
+    <!-- Create a simple CodeMirror instance -->
+    <link rel="stylesheet" href="../CodeMirror/lib/codemirror.css">
+    <link rel="stylesheet" href="../CodeMirror/doc/docs.css">
+
     <style>
         .center{
             padding:10px;
@@ -49,6 +53,15 @@
             text-align: center;
             font-size: 20px;
             line-height: 40px;
+        }
+         .layui-tab.layui-tab-card {
+             overflow: auto;
+             height: 1000px;
+         }
+
+        fieldset#gtm.layui-elem-field {
+            min-height: 1000px;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -71,7 +84,6 @@
                 <p class=MsoNormal><span lang=EN style='font-family:"Ubuntu Mono";mso-fareast-font-family:
 "Ubuntu Mono";mso-bidi-font-family:"Ubuntu Mono"'>‘a’ = User Agent string</span></p>
                 <p class=MsoNormal><span lang=EN style='font-family:"Ubuntu Mono";mso-fareast-font-family:"Ubuntu Mono";mso-bidi-font-family:"Ubuntu Mono"'>‘<span class=SpellE>cmp</span>’= Your Name</span></p>
-                <p class=MsoNormal><span lang=EN>Send us the link to the test page - we will cover the implementation and outputs during the review. Note any failed network calls or JS errors and attempts to troubleshoot them along the way.</span></p>
             </div>
         </fieldset>
 
@@ -82,21 +94,262 @@
                 <h2 class="layui-colla-title">Answer</h2>
                 <div class="layui-colla-content layui-show">
                     <blockquote class="layui-elem-quote"><h2>IAB Ad Unit</h2></blockquote>
-                    <iframe style="border: #efefef 1px solid;width: 100%;height: 500px;overflow: hidden;" id="iab-ad-unit" src="iab/ad.html" onload="window.trigger('iab-ad-load')"></iframe>
+                    <iframe style="border: #efefef 1px solid;width: 468px;height: 60px;overflow: hidden;" id="iab-ad-unit-full-banner" src="iab/full-banner-ad.html" event-name="iab-ad-load" ad-type="full banner"></iframe>
+                    <iframe style="border: #efefef 1px solid;width: 120px;height: 240px;overflow: hidden;" id="iab-ad-unit-vertical-banner" src="iab/vertical-banner-ad.html" event-name="iab-ad-load" ad-type="vertical banner"></iframe>
+                    <fieldset class="layui-elem-field" id="gtm">
+                        <legend><h3>GTM Setting</h3></legend>
+                        <div class="layui-tab layui-tab-card">
+                            <ul class="layui-tab-title">
+                                <li class="layui-this"><h3>Javascript Tag Implementation</h3></li>
+                                <li><h3>Custom HTML</h3></li>
+                                <li><h3>Trigger</h3></li>
+                                <li><h3>Site Page Code</h3></li>
+                            </ul>
+                            <div class="layui-tab-content" style="height: 100px;">
+                                <div class="layui-tab-item layui-show">
+                                    <img src="../layui/img/js-tag.png" style="width: 100%">
+                                </div>
+                                <div class="layui-tab-item">
+                                    <img src="../layui/img/js-tag-ch.png" style="width: 100%">
+                                </div>
+                                <div class="layui-tab-item">
+                                    <img src="../layui/img/js-tag-trigger.png" style="width: 100%">
+                                </div>
+                                <div class="layui-tab-item">
+                                    <textarea id="siteCodeTextArea" readonly>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <script type="text/javascript">
+            window.parseParam = function (searchParam){
+                if(searchParam!=""&&searchParam!=null){
+                    var obj = {};
+                    var paramList = searchParam.replace("?","").split("&");
+                    paramList.map(item=>{
+                        var keyPair = item.split("=");
+                        if(keyPair.length!=0){
+                            eval("obj."+keyPair[0]+"='"+keyPair[1]+"';");
+                        }
+                    });
+                    return obj;
+                }
+                return null;
+            }
+            window.dataLayer = window.dataLayer||[{
+                trackingID: 'UA-194236226-1',
+                pageName:"Javascript Tag Implementation Page",
+                referrer:document.referrer,
+                userAgent:navigator.userAgent,
+                myName:'David Ding'
+            }];
+            var searchParam = document.location.search;
+            var param = parseParam(searchParam);
+            if(param!=null){
+                dataLayer.push(param);
+                console.log(dataLayer);
+            }
+
+        </script>
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-NMDTGQ3');</script>
+        <!-- End Google Tag Manager -->
+        <meta charset="UTF-8">
+        <title>Javascript Tag mplementation</title>
+        <link rel="stylesheet" href="../layui/css/layui.css">
+        <link rel="stylesheet" href="../layui/css/index.css">
+        <!-- Create a simple CodeMirror instance -->
+        <link rel="stylesheet" href="../CodeMirror/lib/codemirror.css">
+
+        <style>
+            .center{
+                padding:10px;
+                box-sizing: border-box;
+                text-align: center;
+                font-size: 20px;
+                line-height: 40px;
+            }
+             .layui-tab.layui-tab-card {
+                 overflow: auto;
+                 height: 1000px;
+             }
+
+            fieldset#gtm.layui-elem-field {
+                min-height: 1000px;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMDTGQ3"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+        <div class="test-text layui-container">
+            <fieldset class="layui-elem-field">
+                <legend>Javascript Tag Implementation</legend>
+                <div class="layui-field-box">
+                    <p class=MsoNormal><span lang=EN>Add an ad unit to the page with an iframe in an IAB standard ad size.</span></p>
+                    <p class=MsoNormal><span lang=EN>Fire the following JS tag when the ad unit loads. See below for instructions to populate the highlighted parameters:</span></p>
+                    <p class=MsoNormal><span lang=EN style='font-family:"Ubuntu Mono";mso-fareast-font-family:
+    "Ubuntu Mono";mso-bidi-font-family:"Ubuntu Mono"'>&lt;script src=&quot;http://c.fqtag.com/tag/implement-r.js?org=BB6DvPmytpFndg8atDcN&amp;p=[REFERRER]&amp;a=[USER_AGENT]&cmp=[YOURNAME]&amp;fmt=banner&amp;rt=display&amp;sl=1&amp;fq=1&quot;&gt;&lt;/script&gt;</span></p>
+                    <p class=MsoNormal><span lang=EN>Populate the variables in the tag with the following:</span></p>
+                    <p class=MsoNormal><span lang=EN style='font-family:"Ubuntu Mono";mso-fareast-font-family:
+    "Ubuntu Mono";mso-bidi-font-family:"Ubuntu Mono"'>‘p’ = Referring URL (URLencoded)</span></p>
+                    <p class=MsoNormal><span lang=EN style='font-family:"Ubuntu Mono";mso-fareast-font-family:
+    "Ubuntu Mono";mso-bidi-font-family:"Ubuntu Mono"'>‘a’ = User Agent string</span></p>
+                    <p class=MsoNormal><span lang=EN style='font-family:"Ubuntu Mono";mso-fareast-font-family:"Ubuntu Mono";mso-bidi-font-family:"Ubuntu Mono"'>‘<span class=SpellE>cmp</span>’= Your Name</span></p>
+                </div>
+            </fieldset>
+
+        </div>
+        <div class="test-answer layui-container">
+            <div class="layui-collapse" lay-accordion>
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">Answer</h2>
+                    <div class="layui-colla-content layui-show">
+                        <blockquote class="layui-elem-quote"><h2>IAB Ad Unit</h2></blockquote>
+                        <iframe style="border: #efefef 1px solid;width: 468px;height: 60px;overflow: hidden;" id="iab-ad-unit-full-banner" src="iab/full-banner-ad.html" event-name="iab-ad-load" ad-type="full banner"></iframe>
+                        <iframe style="border: #efefef 1px solid;width: 120px;height: 240px;overflow: hidden;" id="iab-ad-unit-vertical-banner" src="iab/vertical-banner-ad.html" event-name="iab-ad-load" ad-type="vertical banner"></iframe>
+                        <fieldset class="layui-elem-field" id="gtm">
+                            <legend><h3>GTM Setting</h3></legend>
+                            <div class="layui-tab layui-tab-card">
+                                <ul class="layui-tab-title">
+                                    <li class="layui-this"><h3>Javascript Tag Implementation</h3></li>
+                                    <li><h3>Custom HTML</h3></li>
+                                    <li><h3>Trigger</h3></li>
+                                    <li><h3>Site Page Code</h3></li>
+                                </ul>
+                                <div class="layui-tab-content" style="height: 100px;">
+                                    <div class="layui-tab-item layui-show">
+                                        <img src="../layui/img/js-tag.png" style="width: 100%">
+                                    </div>
+                                    <div class="layui-tab-item">
+                                        <p class="line-height-40"><br>Core codes start from line 133</br></p>
+                                        <p></p>
+                                        <img src="../layui/img/js-tag-ch.png" style="width: 100%">
+                                    </div>
+                                    <div class="layui-tab-item">
+                                        <img src="../layui/img/js-tag-trigger.png" style="width: 100%">
+                                    </div>
+                                    <div class="layui-tab-item">
+                                        <textarea id="siteCodeTextArea" readonly>\<\/textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="../layui/layui.js"></script>
+    <script src="../layui/js/jquery.js"></script>
+    <script src="../CodeMirror/lib/codemirror.js"></script>
+    <script src="../CodeMirror/mode/javascript/javascript.js"></script>
+    <script>
+        var siteCodeTextArea = document.getElementById("siteCodeTextArea");
+        var editor = CodeMirror.fromTextArea(siteCodeTextArea, {
+            lineNumbers: true,
+            mode:"text/html",
+            readOnly:false,
+
+        });
+        editor.setSize("auto","1000px");
+    </script>
+    <script type="text/javascript">
+        layui.use(["element"],function () {
+            var element = layui.element;
+            window.trigger = function (eventName,adType){
+                var event = {
+                    event:eventName,
+                    type:{
+                        adType:adType
+                    }
+                };
+                dataLayer.push(event);
+            }
+            $(document).ready(function () {
+                var iframe = document.getElementsByTagName("iframe");
+                var iframeArray = Array.from(iframe);
+                iframeArray.map(item=>{
+                    if (item.attachEvent) {
+                        item.attachEvent("onload", function() {
+                            var eventName = $(item).attr("event-name");
+                            var adType = $(item).attr("ad-type");
+                            window.trigger(eventName,adType);
+                        });
+                    } else {
+                        item.onload = function() {
+                            var eventName = $(item).attr("event-name");
+                            var adType = $(item).attr("ad-type");
+                            window.trigger(eventName,adType);
+                        };
+                    }
+                });
+            });
+        });
+    </script>
+    </body>
+    </html>
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
             </div>
         </div>
     </div>
 <script src="../layui/layui.js"></script>
+<script src="../layui/js/jquery.js"></script>
+<script src="../CodeMirror/lib/codemirror.js"></script>
+<script src="../CodeMirror/mode/javascript/javascript.js"></script>
+<script src="../CodeMirror/mode/css/css.js"></script>
+<script src="../CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+<script>
+    var siteCodeTextArea = document.getElementById("siteCodeTextArea");
+    var editor = CodeMirror.fromTextArea(siteCodeTextArea, {
+        lineNumbers: true,
+        mode:'htmlmixed',
+        readOnly:true,
+
+    });
+    editor.setSize("1100px","1000px");
+</script>
 <script type="text/javascript">
     layui.use(["element"],function () {
         var element = layui.element;
-        window.trigger = function (eventName){
+        window.trigger = function (eventName,adType){
             var event = {
-                event:eventName
+                event:eventName,
+                type:{
+                    adType:adType
+                }
             };
             dataLayer.push(event);
         }
+        $(document).ready(function () {
+            var iframe = document.getElementsByTagName("iframe");
+            var iframeArray = Array.from(iframe);
+            iframeArray.map(item=>{
+                if (item.attachEvent) {
+                    item.attachEvent("onload", function() {
+                        var eventName = $(item).attr("event-name");
+                        var adType = $(item).attr("ad-type");
+                        window.trigger(eventName,adType);
+                    });
+                } else {
+                    item.onload = function() {
+                        var eventName = $(item).attr("event-name");
+                        var adType = $(item).attr("ad-type");
+                        window.trigger(eventName,adType);
+                    };
+                }
+            });
+        });
     });
 </script>
 </body>
