@@ -1,12 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="text/javascript">
+        window.parseParam = function (searchParam){
+            if(searchParam!=""&&searchParam!=null){
+                var obj = {};
+                var paramList = searchParam.replace("?","").split("&");
+                paramList.map(item=>{
+                    var keyPair = item.split("=");
+                    if(keyPair.length!=0){
+                        eval("obj."+keyPair[0]+"='"+keyPair[1]+"';");
+                    }
+                });
+                return obj;
+            }
+            return null;
+        }
+        window.dataLayer = window.dataLayer||[{
+            trackingID: 'UA-194236226-1',
+            pageName:"Javascript Tag Implementation Page",
+            referrer:document.referrer,
+            userAgent:navigator.userAgent,
+            myName:'David Ding'
+        }];
+        var searchParam = document.location.search;
+        var param = parseParam(searchParam);
+        if(param!=null){
+            dataLayer.push(param);
+            console.log(dataLayer);
+        }
+
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NMDTGQ3');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <title>Javascript Tag mplementation</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
     <link rel="stylesheet" href="../layui/css/index.css">
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMDTGQ3"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
     <div class="test-text layui-container">
         <fieldset class="layui-elem-field">
             <legend>Javascript Tag Implementation</legend>
@@ -30,7 +71,10 @@
         <div class="layui-collapse" lay-accordion>
             <div class="layui-colla-item">
                 <h2 class="layui-colla-title">Answer</h2>
-                <div class="layui-colla-content layui-show">HAHAHA</div>
+                <div class="layui-colla-content layui-show">
+                    <blockquote class="layui-elem-quote"><h2>IAB Ad Unit</h2></blockquote>
+                    <iframe style="border: #efefef 1px solid;width: 100%;height: 500px;overflow: hidden;" id="iab-ad-unit" src="iab/ad.html" onload="window.trigger('iab-ad-load')"></iframe>
+                </div>
             </div>
         </div>
     </div>
@@ -38,6 +82,12 @@
 <script type="text/javascript">
     layui.use(["element"],function () {
         var element = layui.element;
+        window.trigger = function (eventName){
+            var event = {
+                event:eventName
+            };
+            dataLayer.push(event);
+        }
     });
 </script>
 </body>
