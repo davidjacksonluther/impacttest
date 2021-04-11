@@ -39,6 +39,21 @@
     <title>GTM</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
     <link rel="stylesheet" href="../layui/css/index.css">
+    <link rel="stylesheet" href="../CodeMirror/lib/codemirror.css">
+    <link rel="stylesheet" href="../CodeMirror/doc/docs.css">
+    <style>
+        body{
+            background-color: white!important;
+        }
+        .layui-tab.layui-tab-card {
+            overflow: auto;
+            height: 1000px;
+        }
+        fieldset#gtm.layui-elem-field {
+            min-height: 1000px;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -55,20 +70,76 @@
                 </p>
             </div>
         </fieldset>
-
     </div>
     <div class="test-answer layui-container">
         <div class="layui-collapse" lay-accordion>
             <div class="layui-colla-item">
                 <h2 class="layui-colla-title">Answer</h2>
                 <div class="layui-colla-content layui-show">
-                    <fieldset class="layui-elem-field">
-                        <legend>Sample Page</legend>
-                        <div class="layui-field-box">
-                            <p>Create a test page, using any hosting option you prefer - free sites can be created using https://pages.github.com/ with a free Github account, or sites such as zeit or surge.
-                            </p>
-                            <p>Implement Google Tag Manager on the site. Create logic that adds the key and value from query string parameters to the GTM data layer.
-                            </p>
+                    <fieldset class="layui-elem-field" id="gtm">
+                        <legend>GTM Setting</legend>
+                        <div class="layui-tab layui-tab-card">
+                            <ul class="layui-tab-title">
+                                <li class="layui-this"><h3>Variables</h3></li>
+                                <li><h3>Code</h3></li>
+                                <li><h3>Debug</h3></li>
+                            </ul>
+                            <div class="layui-tab-content" style="height: 100px;">
+                                <div class="layui-tab-item layui-show">
+                                    <img src="../layui/img/gtm-var-code.png" style="width: 100%">
+                                    <img src="../layui/img/gtm-var-data.png" style="width: 100%">
+                                </div>
+                                <div class="layui-tab-item">
+                                    <p><h3>if you don't see the code, please click on the blank of the board below.</h3></p>
+                                    <textarea id="siteCodeTextArea" readonly>
+    <script type="text/javascript">
+        window.parseParam = function (searchParam){
+            if(searchParam!=""&&searchParam!=null){
+                var obj = {};
+                var paramList = searchParam.replace("?","").split("&");
+                paramList.map(item=>{
+                    var keyPair = item.split("=");
+                    if(keyPair.length!=0){
+                        eval("obj."+keyPair[0]+"='"+keyPair[1]+"';");
+                    }
+                });
+                return obj;
+            }
+            return null;
+        }
+        window.dataLayer = window.dataLayer||[{
+            trackingID: 'UA-194236226-1',
+            pageName:"GTM Page"
+        }];
+        var searchParam = document.location.search;
+        var param = parseParam(searchParam);
+        if(param!=null){
+            dataLayer.push(param);
+            console.log(dataLayer);
+        }
+
+    </script>
+
+                                    </textarea>
+                                </div>
+                                <div class="layui-tab-item layui-show">
+                                    <p>&nbsp;</p>
+                                    <p><h3>You can use the two Chrome debug tool to check GTM Tag .</h3></p>
+                                    <img src="../layui/img/ga-debug-tool-1.png" style="width: 30%">
+                                    <img src="../layui/img/ga-debug-tool-2.png" style="width: 30%">
+                                    <p>&nbsp;</p>
+                                    <p><h3>You can check console to see Google Analytics Debugger result.</h3></p>
+                                    <img src="../layui/img/ga-debug-console.png" style="width: 100%">
+                                    <p>&nbsp;</p>
+                                    <p><h3>If you can't see the result at current because there is a iframe page embeded in this page, you can directly click the link below.</h3></p>
+                                    <div class="layui-card">
+                                        <div class="layui-card-header"><h2>Test Page URL</h2></div>
+                                        <div class="layui-card-body">
+                                            <blockquote class="layui-elem-quote"><p> click this link: <a href="gtm.html?data=apitestdata&code=asdvipads1231" target="_blank">/answer/gtm.html?data=apitestdata&code=asdvipads1231</a> </p></blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </fieldset>
                 </div>
@@ -77,6 +148,20 @@
     </div>
 </div>
 <script src="../layui/layui.js"></script>
+<script src="../CodeMirror/lib/codemirror.js"></script>
+<script src="../CodeMirror/mode/javascript/javascript.js"></script>
+<script src="../CodeMirror/mode/css/css.js"></script>
+<script src="../CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+<script>
+    var siteCodeTextArea = document.getElementById("siteCodeTextArea");
+    var editor = CodeMirror.fromTextArea(siteCodeTextArea, {
+        lineNumbers: true,
+        mode:'htmlmixed',
+        readOnly:true,
+
+    });
+    editor.setSize("1100px","1000px");
+</script>
 <script type="text/javascript">
     layui.use(["element"],function () {
         var element = layui.element;
