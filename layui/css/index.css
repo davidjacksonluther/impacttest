@@ -6,3 +6,4 @@ ul.layui-nav.layui-nav-tree { float: left; height: 100vh; }
 iframe { border: none; height: 100%; width: 100%; }
 li{list-style: circle;}
 .line-height-40{line-height: 0px;height: 15px;padding: 0 10px;}
+.margin-auto{margin: 0 300px ;}
