@@ -78,7 +78,7 @@
             TextField("Country Code", text:$countryCode).padding()
             Button("Search Weather",action: {
                 weatherMsg = ""
-                var urlString = "http://api.openweathermap.org/data/2.5/weather?q="+city+","+stateCode+","+countryCode+"&appid=97492e0f837f32cbfaaaea3b349d2d74"
+                var urlString = "http://api.openweathermap.org/data/2.5/weather?q="+city+","+stateCode+","+countryCode+"&appid={app-key}"
                 var url = URL(string: urlString)!
                 var request = URLRequest(url: url)
                 var response = URLResponse()
