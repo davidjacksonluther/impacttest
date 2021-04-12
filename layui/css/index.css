@@ -9,4 +9,4 @@ li{list-style: circle;}
 .margin-auto{margin: 0 300px ;}
 ul.layui-nav.layui-nav-tree { background-color: #185ABD; }
 .layui-nav-tree .layui-nav-item a:hover { background-color: rgba(24,90,189,0.7); }
-.layui-this { background-color: white!important; color: black; }
+.layui-this { background-color: white!important; color: black!important; }
