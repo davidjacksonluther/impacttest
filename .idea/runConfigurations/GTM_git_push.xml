@@ -1,7 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="GTM git push" type="BashProRunConfiguration">
-    <option name="scriptPath" value="$PROJECT_DIR$/gtm_git_push.sh" />
-    <RunnerSettings bashdbVersion="Automatic" bashPathMapper="Automatic" RunnerId="pro.bashsupport.shDebugRunner" />
-    <method v="2" />
-  </configuration>
-</component>
