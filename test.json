@@ -1,13 +1,1 @@
-{
-    "applinks": {
-        "apps": [],
-        "details": [
-            {
-                "appID": "K25HLH8RLD.com.bestwo.KoMiLy",
-                "paths": [
-                    "*"
-                ]
-            }
-        ]
-    }
-}
+{"applinks":{"apps":[],"details":[{"appID":"K25HLH8RLD.com.bestwo.KoMiLy","paths":["*"]}]}}
