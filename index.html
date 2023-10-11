@@ -9,41 +9,72 @@
 </head>
 
 <body>
-    <ul class="layui-nav layui-nav-tree" lay-filter="nav">
-        <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-        <li class="layui-nav-item layui-this">
-            <a
-                lay-href="https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/Resume_David_20210801.docx">Resume</a>
-        </li>
-        <!--    <li class="layui-nav-item">-->
-        <!--        <a lay-href="impact-test.html" >Impact Test</a>-->
-        <!--    </li>-->
-        <!--    <li class="layui-nav-item layui-nav-itemed">-->
-        <!--        <a lay-href="#" href="javascript:;">Answers</a>-->
-        <!--        <dl class="layui-nav-child">-->
-        <!--            <dd><a lay-href="answer/gtm.html" >GTM</a></dd>-->
-        <!--            <dd><a lay-href="answer/api.html?data=apitestdata&code=asdvipads1231" >API Implementation</a></dd>-->
-        <!--            <dd><a lay-href="answer/javascript.html" >Javascript tag implementation</a></dd>-->
-        <!--            <dd><a lay-href="answer/mobileapp.html" >Mobile APP</a></dd>-->
-        <!--        </dl>-->
-        <!--    </li>-->
-        <!--<li class="layui-nav-item"><a href="api.html">API</a></li>-->
-    </ul>
-    <div class="main-board"></div>
-
-    <script src="public/layui.js"></script>
+    <div id="app">
+        <ul class="layui-nav layui-nav-tree" lay-filter="nav">
+            <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+            <li class="layui-nav-item layui-this">
+                <a v-bind:lay-href="ResumePath">Resume</a>
+            </li>
+            <!--    <li class="layui-nav-item">-->
+            <!--        <a lay-href="impact-test.html" >Impact Test</a>-->
+            <!--    </li>-->
+            <!--    <li class="layui-nav-item layui-nav-itemed">-->
+            <!--        <a lay-href="#" href="javascript:;">Answers</a>-->
+            <!--        <dl class="layui-nav-child">-->
+            <!--            <dd><a lay-href="answer/gtm.html" >GTM</a></dd>-->
+            <!--            <dd><a lay-href="answer/api.html?data=apitestdata&code=asdvipads1231" >API Implementation</a></dd>-->
+            <!--            <dd><a lay-href="answer/javascript.html" >Javascript tag implementation</a></dd>-->
+            <!--            <dd><a lay-href="answer/mobileapp.html" >Mobile APP</a></dd>-->
+            <!--        </dl>-->
+            <!--    </li>-->
+            <!--<li class="layui-nav-item"><a href="api.html">API</a></li>-->
+        </ul>
+        <div class="main-board"></div>
+    </div>
+    <script type="text/javascript" src="public/json/company.js"></script>
+    <script type="text/javascript" src="public/js/vue.js"></script>
+    <script type="text/javascript" src="public/layui.js"></script>
     <script type="text/javascript" src="public/js/jquery.js"></script>
+    <script type="text/javascript" src="public/js/util.js"></script>
     <script type="text/javascript">
-        layui.use(["element"], function () {
-            $(".main-board").html("<iframe src=\"https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/Resume_David_20210801.docx\"></iframe>");
-            $("a[lay-href]").on('click', function (elem) {
-                var href = $(this).attr("lay-href");
-                if (href == "index.html" || href == "#") {
-                    return;
-                }
-                $(".main-board").html("<iframe src=\"" + href + "\"></iframe>");
-            });
+        var vm = new Vue({
+
+            el: "#app",
+            data: {
+                ResumePath: '#'
+            }
         });
+
+        layui.use(["element"], function () {
+            var companycode = getUrlArg("id");
+            console.log(companycode);
+            if (!companycode) {
+                layer.alert("对不起！您无权限查看我的简历! Sorry! Don't you have any access to my resume!");
+                return;
+            }
+            ShowResume(companycode);
+        });
+    </script>
+    <script type="text/javascript">
+        function ShowResume(companycode) {
+            for (var i in companylist) {
+                var company = companylist[i];
+                var code = company.code;
+                var folder = company.folder;
+                var resume = company.resume;
+                if (code == companycode) {
+                    vm.ResumePath = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View" + folder + "/" + resume;
+                    // $(".main-board").html("<iframe src=\"https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View" + folder + "/" + resume + "\"></iframe>");
+                    // $("a[lay-href]").on('click', function (elem) {
+                    //     var href = $(this).attr("lay-href");
+                    //     if (href == "index.html" || href == "#") {
+                    //         return;
+                    //     }
+                    //     $(".main-board").html("<iframe src=\"" + href + "\"></iframe>");
+                    // });
+                }
+            }
+        }
     </script>
 </body>
 

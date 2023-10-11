@@ -127,3 +127,17 @@ function isValidateDateHours(date) {
     }
     return true;
 }
+
+/** 获取URL参数 */
+function getUrlArg(sKey) {
+    var sParams = location.href;
+    sParams = sParams.substring(sParams.indexOf("?") + 1);
+    var a = sParams.split('&');
+
+    for (var i = 0; i < a.length; i++) {
+        var sKey1 = a[i].substring(0, a[i].indexOf("="));
+        var sValue1 = a[i].substring(a[i].indexOf("=") + 1);
+        if (sKey1.toLowerCase() === sKey.toLowerCase()) return decodeURIComponent(sValue1);
+    }
+    return "";
+}
