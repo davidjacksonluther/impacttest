@@ -37,18 +37,26 @@
     <script type="text/javascript" src="public/js/jquery.js"></script>
     <script type="text/javascript" src="public/js/util.js"></script>
     <script type="text/javascript">
-        var vm = new Vue({
-
-            el: "#app",
-            data: {
-                ResumePath: '#'
-            }
-        });
-
         layui.use(["element"], function () {
+            var loadingindex = layer.load(0); //风格1的加载
+            window.vm = new Vue({
+
+                el: "#app",
+                data: {
+                    ResumePath: '#'
+                },
+                mounted: function () {
+
+                }
+            });
+
+
+
             var companycode = getUrlArg("id");
             console.log(companycode);
+            layer.close(loadingindex);
             if (!companycode) {
+
                 layer.alert("对不起！您无权限查看我的简历! Sorry! Don't you have any access to my resume!");
                 return;
             }
@@ -64,6 +72,7 @@
                 var resume = company.resume;
                 if (code == companycode) {
                     vm.ResumePath = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View" + folder + "/" + resume;
+
                     // $(".main-board").html("<iframe src=\"https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View" + folder + "/" + resume + "\"></iframe>");
                     // $("a[lay-href]").on('click', function (elem) {
                     //     var href = $(this).attr("lay-href");
