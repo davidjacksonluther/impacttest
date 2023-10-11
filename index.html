@@ -9,8 +9,11 @@
 </head>
 
 <body>
-    <div id="wait" style="height: 100vh;">加载慢，请耐心等待！。。。。。。</div>
-    <div id="app">
+    <div id="wait" style="height: 100vh;text-align: center;font-size: 40px; padding-top: calc(50vh - 40px);">
+        <div>加载慢，请耐心等待！......</div>
+        <div>Slow，Please wait for a while ......</div>
+    </div>
+    <div id="app" style="display: none;">
         <ul class="layui-nav layui-nav-tree" lay-filter="nav">
             <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
             <li class="layui-nav-item layui-this">
@@ -40,6 +43,7 @@
     <script type="text/javascript">
         // document.getElementById("wait").html = "";
         $("#wait").remove();
+        $("#app").show();
         layui.use(["element"], function () {
             var loadingindex = layer.load(0); //风格1的加载
             window.vm = new Vue({
