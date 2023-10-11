@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <div id="wait">加载慢，请耐心等待！。。。。。。</div>
     <div id="app">
         <ul class="layui-nav layui-nav-tree" lay-filter="nav">
             <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
@@ -37,6 +38,8 @@
     <script type="text/javascript" src="public/js/jquery.js"></script>
     <script type="text/javascript" src="public/js/util.js"></script>
     <script type="text/javascript">
+        // document.getElementById("wait").html = "";
+        $("#wait").remove();
         layui.use(["element"], function () {
             var loadingindex = layer.load(0); //风格1的加载
             window.vm = new Vue({
