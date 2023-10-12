@@ -17,22 +17,23 @@
         </div>
 
     </div>
-
-    <ul class="layui-nav layui-nav-tree" lay-filter="nav" id="menu-tree">
-        <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-        <li class="layui-nav-item layui-this">
-            <a lay-href="" id="ResumePath">简历/Resume</a>
-        </li>
-        <li class="layui-nav-item">
-            <a lay-href="" id="CoverLetterPath">求职信/Cover Letter</a>
-        </li>
-        <li class="layui-nav-item layui-nav-itemed">
-            <a href="javascript:;">作品/Work</a>
-            <dl class="layui-nav-child" id="worklist">
-            </dl>
-        </li>
-    </ul>
-    <div class="main-board"></div>
+    <div id="app">
+        <ul class="layui-nav layui-nav-tree" lay-filter="nav" id="menu-tree">
+            <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+            <li class="layui-nav-item layui-this">
+                <a lay-href="" id="ResumePath">简历/Resume</a>
+            </li>
+            <li class="layui-nav-item">
+                <a lay-href="" id="CoverLetterPath">求职信/Cover Letter</a>
+            </li>
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;">作品/Work</a>
+                <dl class="layui-nav-child" id="worklist">
+                </dl>
+            </li>
+        </ul>
+        <div class="main-board"></div>
+    </div>
     <!-- </div> -->
     <script type="text/html">
         <li class="layui-nav-item layui-nav-itemed">
