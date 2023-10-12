@@ -12,8 +12,8 @@ var companylist = [
         "resume_cn": "Resume_David.docx",
         "resume_en": "Resume_David.docx",
         "coverletter":"en",
-        "coverletter_cn":"Cover Letter_ David Ding.docx",
-        "coverletter_en":"Cover Letter_ David Ding_Chinese.docx",
+        "coverletter_cn":"Cover Letter_David Ding.docx",
+        "coverletter_en":"Cover Letter_David Ding_Chinese.docx",
         "worklist":[]
     },
     {
