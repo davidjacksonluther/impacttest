@@ -10,7 +10,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "G:\\Other\\Online Resume\\resume\\index.html?id=0423",
+            "url": "http://localhost:8080/resume/?id=0423",
             "webRoot": "${workspaceFolder}"
         }
     ]
