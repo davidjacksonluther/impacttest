@@ -14,6 +14,17 @@ var companylist = [
         "resume_en": "",
         "coverletter":"en",
         "coverletter_cn":"求职信.docx",
-        "coverletter_en":"Cover Letter.docx"
+        "coverletter_en":"Cover Letter.docx",
+        "worklist":[
+            {
+            "name":"Competitor Analysis and Solutions.pptx",
+            "suffix":"pptx"
+        },{
+            "name":"Ideas On Nowadays Digtial Marketing.pdf",
+            "suffix":"pdf"
+        },{
+            "name":"Analysis.xlsx",
+            "suffix":"xlsx"
+        }]
     }
 ]

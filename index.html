@@ -14,29 +14,38 @@
         <div>Slow，Please wait for a while ......</div>
     </div>
     <div id="app" style="display: none;">
-        <ul class="layui-nav layui-nav-tree" lay-filter="nav">
+        <ul class="layui-nav layui-nav-tree" lay-filter="nav" id="menu-tree">
             <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
             <li class="layui-nav-item layui-this">
                 <a v-bind:lay-href="ResumePath">Resume</a>
             </li>
-            <!--    <li class="layui-nav-item">-->
-            <!--        <a lay-href="impact-test.html" >Impact Test</a>-->
-            <!--    </li>-->
-            <!--    <li class="layui-nav-item layui-nav-itemed">-->
-            <!--        <a lay-href="#" href="javascript:;">Answers</a>-->
-            <!--        <dl class="layui-nav-child">-->
-            <!--            <dd><a lay-href="answer/gtm.html" >GTM</a></dd>-->
-            <!--            <dd><a lay-href="answer/api.html?data=apitestdata&code=asdvipads1231" >API Implementation</a></dd>-->
-            <!--            <dd><a lay-href="answer/javascript.html" >Javascript tag implementation</a></dd>-->
-            <!--            <dd><a lay-href="answer/mobileapp.html" >Mobile APP</a></dd>-->
-            <!--        </dl>-->
-            <!--    </li>-->
-            <!--<li class="layui-nav-item"><a href="api.html">API</a></li>-->
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;">Work</a>
+                <dl class="layui-nav-child">
+                    <dd v-for="work in worklinklist"><a :lay-href="work.path">{{work.name}}</a></dd>
+                </dl>
+            </li>
         </ul>
         <div class="main-board"></div>
     </div>
+    <script type="text/html">
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;">Work</a>
+            <dl class="layui-nav-child">
+                <dd><a
+                        lay-href="https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/McDonalds/Competitor Analysis and Solutions.pptx">Competitor
+                        Analysis and Solutions.pptx</a></dd>
+                <dd><a lay-href="/resume/View/McDonalds/Ideas On Nowadays Digtial Marketing.pdf">Ideas On Nowadays
+                        Digtial Marketing.pdf</a></dd>
+                <dd><a
+                        lay-href="https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/McDonalds/Analysis.xlsx">Analysis.xlsx</a>
+                </dd>
+            </dl>
+        </li>
+    </script>
     <script type="text/javascript" src="public/json/company.js"></script>
     <script type="text/javascript" src="public/js/vue.js"></script>
+    <!-- <script type="text/javascript" src="public/js/pdf.js"></script> -->
     <script type="text/javascript" src="public/layui.js"></script>
     <script type="text/javascript" src="public/js/jquery.js"></script>
     <script type="text/javascript" src="public/js/util.js"></script>
@@ -51,7 +60,8 @@
                 el: "#app",
                 data: {
                     ResumePath: '#',
-                    company: {}
+                    company: {},
+                    worklinklist: []
                 },
                 mounted: function () {
 
@@ -69,6 +79,7 @@
                 return;
             }
             ShowResume(companycode);
+            AddMenu();
         });
     </script>
     <script type="text/javascript">
@@ -89,15 +100,48 @@
                     vm.ResumePath = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/" + folder + "/" + resume;
 
                     $(".main-board").html("<iframe src=\"" + vm.ResumePath + "\"></iframe>");
-                    $("a[lay-href]").on('click', function (elem) {
-                        var href = $(this).attr("lay-href");
-                        if (href == "index.html" || href == "#") {
-                            return;
+                    $(document).on({
+                        'click': function (elem) {
+                            var href = $(this).attr("lay-href");
+                            if (href == "index.html" || href == "#") {
+                                return;
+                            }
+                            $(".main-board").html("<iframe src=\"" + href + "\"></iframe>");
                         }
-                        $(".main-board").html("<iframe src=\"" + href + "\"></iframe>");
-                    });
+                    }, "a[lay-href]");
                 }
             }
+        }
+        function AddMenu() {
+            var company = vm.company;
+            var folder = company.folder;
+            var worklist = company.worklist;
+            var html = '<li class="layui-nav-item layui-nav-itemed"\>\
+                            <a href="javascript:;">Work</a>\
+                            <dl class="layui-nav-child">\
+                        ';
+            var worklinklist = [];
+            for (var i in worklist) {
+                var work = worklist[i];
+                var suffix = work.suffix;
+                var name = work.name;
+                var officeApi = "";
+                switch (suffix) {
+                    case 'docx':
+                    case 'pptx':
+                    case 'xlsx': { officeApi = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/"; }; break;
+                    case 'pdf': {
+                        officeApi = "/resume/View/";
+                    }
+                }
+                var path = officeApi + folder + '/' + name;
+                worklinklist.push({ "path": path, "name": name });
+                vm.worklinklist = worklinklist;
+                // html += ' <dd><a lay-href="' + path + '" >' + name + '</a></dd>';
+            }
+            // html += '</dl>\
+            // // </li>';
+            // $("#menu-tree").append(html);
         }
     </script>
 </body>
