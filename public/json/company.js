@@ -18,13 +18,16 @@ var companylist = [
         "worklist":[
             {
             "name":"Competitor Analysis and Solutions.pptx",
-            "suffix":"pptx"
+            "suffix":"pptx",
+            "show":true
         },{
             "name":"Ideas On Nowadays Digtial Marketing.pdf",
-            "suffix":"pdf"
+            "suffix":"pdf",
+            "show":true
         },{
             "name":"Analysis.xlsx",
-            "suffix":"xlsx"
+            "suffix":"xlsx",
+            "show":false
         }]
     }
 ]

@@ -9,9 +9,12 @@
 </head>
 
 <body>
-    <div id="wait" style="height: 100vh;text-align: center;font-size: 40px; padding-top: calc(50vh - 40px);">
-        <div>加载慢，请耐心等待！......</div>
-        <div>Slow，Please wait for a while ......</div>
+    <div id="wait">
+        <div id="wait-inner">
+            <div>加载慢，请耐心等待！......</div>
+            <div>LOADING! PLEASE WAIT FOR A WHILE ......</div>
+        </div>
+
     </div>
     <div id="app" style="display: none;">
         <ul class="layui-nav layui-nav-tree" lay-filter="nav" id="menu-tree">
@@ -50,7 +53,6 @@
     <script type="text/javascript" src="public/js/jquery.js"></script>
     <script type="text/javascript" src="public/js/util.js"></script>
     <script type="text/javascript">
-        // document.getElementById("wait").html = "";
         $("#wait").remove();
         $("#app").show();
         layui.use(["element"], function () {
