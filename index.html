@@ -16,21 +16,23 @@
         </div>
 
     </div>
-    <div id="app" style="display: none;">
-        <ul class="layui-nav layui-nav-tree" lay-filter="nav" id="menu-tree">
-            <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-            <li class="layui-nav-item layui-this">
-                <a v-bind:lay-href="ResumePath">Resume</a>
-            </li>
-            <li class="layui-nav-item layui-nav-itemed">
-                <a href="javascript:;">Work</a>
-                <dl class="layui-nav-child">
-                    <dd v-for="work in worklinklist"><a :lay-href="work.path">{{work.name}}</a></dd>
-                </dl>
-            </li>
-        </ul>
-        <div class="main-board"></div>
-    </div>
+
+    <ul class="layui-nav layui-nav-tree" lay-filter="nav" id="menu-tree">
+        <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+        <li class="layui-nav-item layui-this">
+            <a lay-href="" id="ResumePath">简历/Resume</a>
+        </li>
+        <li class="layui-nav-item">
+            <a lay-href="" id="CoverLetterPath">求职信/Cover Letter</a>
+        </li>
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;">作品/Work</a>
+            <dl class="layui-nav-child" id="worklist">
+            </dl>
+        </li>
+    </ul>
+    <div class="main-board"></div>
+    <!-- </div> -->
     <script type="text/html">
         <li class="layui-nav-item layui-nav-itemed">
             <a href="javascript:;">Work</a>
@@ -47,7 +49,7 @@
         </li>
     </script>
     <script type="text/javascript" src="public/json/company.js"></script>
-    <script type="text/javascript" src="public/js/vue.js"></script>
+    <!-- <script type="text/javascript" src="public/js/vue.js"></script> -->
     <!-- <script type="text/javascript" src="public/js/pdf.js"></script> -->
     <script type="text/javascript" src="public/layui.js"></script>
     <script type="text/javascript" src="public/js/jquery.js"></script>
@@ -57,20 +59,6 @@
         $("#app").show();
         layui.use(["element"], function () {
             var loadingindex = layer.load(0); //风格1的加载
-            window.vm = new Vue({
-
-                el: "#app",
-                data: {
-                    ResumePath: '#',
-                    company: {},
-                    worklinklist: []
-                },
-                mounted: function () {
-
-                }
-            });
-
-
 
             var companycode = getUrlArg("id");
             console.log(companycode);
@@ -87,7 +75,7 @@
     <script type="text/javascript">
         function ShowResume(companycode) {
             for (var i in companylist) {
-                var company = vm.company = companylist[i];
+                company = companylist[i];
                 var code = company.code;
                 var folder = company.folder;
                 var resumeflag = company.resume;
@@ -96,12 +84,14 @@
                 var coverletter = "";
                 if (coverletterflag) {
                     coverletter = company["coverletter_" + coverletterflag];
+                    CoverLetterPath = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/" + folder + "/" + coverletter;
+                    $("#CoverLetterPath").attr("lay-href", CoverLetterPath);
                 }
 
                 if (code == companycode) {
-                    vm.ResumePath = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/" + folder + "/" + resume;
-
-                    $(".main-board").html("<iframe src=\"" + vm.ResumePath + "\"></iframe>");
+                    ResumePath = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/" + folder + "/" + resume;
+                    $("#ResumePath").attr("lay-href", ResumePath);
+                    $(".main-board").html("<iframe src=\"" + ResumePath + "\"></iframe>");
                     $(document).on({
                         'click': function (elem) {
                             var href = $(this).attr("lay-href");
@@ -115,19 +105,16 @@
             }
         }
         function AddMenu() {
-            var company = vm.company;
             var folder = company.folder;
             var worklist = company.worklist;
-            var html = '<li class="layui-nav-item layui-nav-itemed"\>\
-                            <a href="javascript:;">Work</a>\
-                            <dl class="layui-nav-child">\
-                        ';
+            var html = '';
             var worklinklist = [];
             for (var i in worklist) {
                 var work = worklist[i];
                 var suffix = work.suffix;
                 var name = work.name;
                 var officeApi = "";
+                var show = work.show;
                 switch (suffix) {
                     case 'docx':
                     case 'pptx':
@@ -137,13 +124,21 @@
                     }
                 }
                 var path = officeApi + folder + '/' + name;
-                worklinklist.push({ "path": path, "name": name });
-                vm.worklinklist = worklinklist;
-                // html += ' <dd><a lay-href="' + path + '" >' + name + '</a></dd>';
+                if (show) {
+                    html += ' <dd><a lay-href="' + path + '" >' + name + '</a></dd>';
+                }
             }
-            // html += '</dl>\
-            // // </li>';
-            // $("#menu-tree").append(html);
+
+            $("#worklist").append(html);
+            render();
+        }
+
+        function render() {
+            layui.use('element', function () {
+                var element = layui.element;
+                var layFilter = $("#menu-tree").attr('lay-filter');
+                element.render('nav', layFilter);
+            });
         }
     </script>
 </body>

@@ -1,6 +1,8 @@
 body {
     height: 100vh;
+    margin: 0 auto;
 }
+
 
 ul {
     height: 100%;
@@ -49,8 +51,10 @@ ul.layui-nav.layui-nav-tree {
     background-color: #185ABD;
 }
 
+
 .layui-nav-tree .layui-nav-item a:hover {
-    background-color: rgba(24, 90, 189, 0.7);
+    background-color: #fff!important;
+    color: #000!important;
 }
 
 .layui-this {
