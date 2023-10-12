@@ -110,28 +110,31 @@
             }
         }
         function AddMenu(companycode) {
-            var folder = company.folder;
-            var worklist = company.worklist;
-            var code = company.code;
+            var folder = certaincompany.folder;
+            var worklist = certaincompany.worklist;
+            var code = certaincompany.code;
             var html = '';
             var worklinklist = [];
-            for (var i in worklist) {
-                var work = worklist[i];
-                var suffix = work.suffix;
-                var name = work.name;
-                var officeApi = "";
-                var show = work.show;
-                switch (suffix) {
-                    case 'docx':
-                    case 'pptx':
-                    case 'xlsx': { officeApi = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/"; }; break;
-                    case 'pdf': {
-                        officeApi = "/resume/View/";
+            if (code == companycode) {
+                for (var i in worklist) {
+                    var work = worklist[i];
+                    var suffix = work.suffix;
+                    var name = work.name;
+                    var officeApi = "";
+                    var show = work.show;
+
+                    switch (suffix) {
+                        case 'docx':
+                        case 'pptx':
+                        case 'xlsx': { officeApi = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/"; }; break;
+                        case 'pdf': {
+                            officeApi = "/resume/View/";
+                        }
                     }
-                }
-                var path = officeApi + folder + '/' + name;
-                if (show) {
-                    html += ' <dd><a lay-href="' + path + '" >' + name + '</a></dd>';
+                    var path = officeApi + folder + '/' + name;
+                    if (show) {
+                        html += ' <dd><a lay-href="' + path + '" >' + name + '</a></dd>';
+                    }
                 }
             }
 
