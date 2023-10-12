@@ -53,8 +53,8 @@ ul.layui-nav.layui-nav-tree {
 
 
 .layui-nav-tree .layui-nav-item a:hover {
-    background-color: #fff!important;
-    color: #000!important;
+    background-color: #fff !important;
+    color: #000 !important;
 }
 
 .layui-this {
@@ -82,4 +82,8 @@ ul.layui-nav.layui-nav-tree {
     border: 1px solid rgb(209, 209, 209);
     box-shadow: #185ABD90 5px 5px 5px 2px;
     font-family: '楷体', 'Ariel';
+}
+
+#app {
+    display: none;
 }
