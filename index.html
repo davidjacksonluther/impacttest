@@ -50,7 +50,8 @@
 
                 el: "#app",
                 data: {
-                    ResumePath: '#'
+                    ResumePath: '#',
+                    company: {}
                 },
                 mounted: function () {
 
@@ -73,7 +74,7 @@
     <script type="text/javascript">
         function ShowResume(companycode) {
             for (var i in companylist) {
-                var company = companylist[i];
+                var company = vm.company = companylist[i];
                 var code = company.code;
                 var folder = company.folder;
                 var resumeflag = company.resume;
@@ -87,7 +88,7 @@
                 if (code == companycode) {
                     vm.ResumePath = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/" + folder + "/" + resume;
 
-                    $(".main-board").html("<iframe src=\"" + vm.ResumePath+"\"></iframe>");
+                    $(".main-board").html("<iframe src=\"" + vm.ResumePath + "\"></iframe>");
                     $("a[lay-href]").on('click', function (elem) {
                         var href = $(this).attr("lay-href");
                         if (href == "index.html" || href == "#") {
