@@ -1,6 +1,23 @@
 var companylist = [
     {
         "name_cn": [
+            "通用"
+        ],
+        "name_en": [
+            "Common"
+        ],
+        "code": "0101",
+        "folder": "resume",
+        "resume":"cn",
+        "resume_cn": "Resume_David.docx",
+        "resume_en": "Resume_David.docx",
+        "coverletter":"en",
+        "coverletter_cn":"Cover Letter_ David Ding.docx",
+        "coverletter_en":"Cover Letter_ David Ding_Chinese.docx",
+        "worklist":[]
+    },
+    {
+        "name_cn": [
             "金拱门",
             "麦当劳"
         ],
