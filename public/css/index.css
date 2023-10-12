@@ -23,7 +23,7 @@ ul.layui-nav.layui-nav-tree {
     width: calc(100vw - 203px);
     height: 100vh;
     overflow: auto;
-    padding: 10px 10px;
+    padding: 0 10px;
     box-sizing: border-box;
 }
 
@@ -75,11 +75,13 @@ ul.layui-nav.layui-nav-tree {
     font-size: 30px;
     padding: calc(50vh - 80px) calc(50vw - 400px);
     box-sizing: border-box;
-    background: url(../img/bg.png) no-repeat 0 150px;
+    background: url(../img/bg.png) no-repeat 0 200px;
+    width: 100vw;
+    background-color: #FFF;
 }
 
 #wait-inner {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
     border: 1px solid rgb(209, 209, 209);
     box-shadow: #185ABD90 5px 5px 5px 2px;
