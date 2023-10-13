@@ -3,7 +3,6 @@ body {
     margin: 0 auto;
 }
 
-
 ul {
     height: 100%;
 }
@@ -51,7 +50,6 @@ ul.layui-nav.layui-nav-tree {
     background-color: #185ABD;
 }
 
-
 .layui-nav-tree .layui-nav-item a:hover {
     background-color: #fff !important;
     color: #000 !important;
@@ -94,7 +92,6 @@ ul.layui-nav.layui-nav-tree {
     overflow: hidden;
 }
 
-
 #data-cloud {
     height: calc(100% - 23px);
 }
@@ -104,7 +101,7 @@ ul {
 }
 
 #data-cloud .layui-card {
-    height: 100%;
+    height: calc(100% - 40px);
 }
 
 #data-cloud .layui-tab-item {
