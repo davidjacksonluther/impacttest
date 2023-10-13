@@ -91,9 +91,26 @@ ul.layui-nav.layui-nav-tree {
 
 #app {
     display: none;
+    overflow: hidden;
 }
 
 
 #data-cloud {
     height: calc(100% - 23px);
+}
+
+ul {
+    margin: 0;
+}
+
+#data-cloud .layui-card {
+    height: 100%;
+}
+
+#data-cloud .layui-tab-item {
+    height: 100%;
+}
+
+#data-cloud .layui-card-body {
+    height: calc(100% - 43px);
 }
