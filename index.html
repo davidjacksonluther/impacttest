@@ -26,9 +26,16 @@
             <li class="layui-nav-item">
                 <a lay-href="" id="CoverLetterPath">求职信 / Cover Letter</a>
             </li>
-            <li class="layui-nav-item layui-nav-itemed">
+            <li class="layui-nav-item layui-nav-itemed" id="list-work">
                 <a href="javascript:;">作品 / Work</a>
                 <dl class="layui-nav-child" id="worklist">
+                </dl>
+            </li>
+            <li class="layui-nav-item layui-nav-itemed" id="list-project">
+                <a href="javascript:;">Git项目 / Git Project </a>
+                <dl class="layui-nav-child" id="projectlist">
+                    <dd><a lay-href="https://gitee.com/david-jackson-luther-king/data-cloud/tree/master">Data Cloud</a>
+                    </dd>
                 </dl>
             </li>
         </ul>
@@ -37,21 +44,22 @@
         </div>
     </div>
     <!-- </div> -->
-    <script type="text/html">
-        <li class="layui-nav-item layui-nav-itemed">
-            <a href="javascript:;">Work</a>
-            <dl class="layui-nav-child">
-                <dd><a
-                        lay-href="https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/McDonalds/Competitor Analysis and Solutions.pptx">Competitor
-                        Analysis and Solutions.pptx</a></dd>
-                <dd><a lay-href="/resume/View/McDonalds/Ideas On Nowadays Digtial Marketing.pdf">Ideas On Nowadays
-                        Digtial Marketing.pdf</a></dd>
-                <dd><a
-                        lay-href="https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/McDonalds/Analysis.xlsx">Analysis.xlsx</a>
-                </dd>
-            </dl>
-        </li>
+    <script type="text/html" id="data-cloud-script">
+        <div class="layui-tab layui-tab-card" id="data-cloud">
+            <ul class="layui-tab-title">
+              <li class="layui-this">项目设计</li>
+              <li>项目地址页</li>
+             
+            </ul>
+            <div class="layui-tab-content" style="height: 100px;">
+              <div class="layui-tab-item layui-show">
+                <iframe src="https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/Project/DataCloud/数据平台（Phase I推荐引擎）系统架构设计.pptx"></iframe>
+              </div>
+              <div class="layui-tab-item">2</div>            
+            </div>
+          </div>
     </script>
+
     <script type="text/javascript" src="public/json/company.js"></script>
     <!-- <script type="text/javascript" src="public/js/vue.js"></script> -->
     <!-- <script type="text/javascript" src="public/js/pdf.js"></script> -->
@@ -75,6 +83,7 @@
                     "color": "red",
                     "font-weight": "800"
                 });
+                layer.close(loadingindex);
                 return;
             }
             setTimeout(function () {
@@ -83,15 +92,17 @@
                 layer.close(loadingindex);
             }, 0);
             ShowResume(companycode);
-            AddMenu(companycode);
+            AddWorkList(companycode);
+            AddProjectList(companycode);
         });
     </script>
     <script type="text/javascript">
         function ShowResume(companycode) {
             for (var i in companylist) {
-                var company = certaincompany = companylist[i];
+                var company = companylist[i];
                 var code = company.code;
                 if (code == companycode) {
+                    certaincompany = company;
                     var folder = company.folder;
                     var resumeflag = company.resume;
                     var resume = company["resume_" + resumeflag];
@@ -113,20 +124,27 @@
                                 if (href == "index.html" || href == "#") {
                                     return;
                                 }
-                                $(".main-board").html("<iframe src=\"" + href + "\"></iframe>");
+
+                                if ($(this).parentByTag('dl').attr("id") == "projectlist") {
+                                    $(".main-board").html($("#data-cloud-script").html());
+                                } else {
+                                    $(".main-board").html("<iframe src=\"" + href + "\"></iframe>");
+                                }
+
                             }
                         }, "a[lay-href]");
                     }
                 }
             }
         }
-        function AddMenu(companycode) {
+        function AddWorkList(companycode) {
             var folder = certaincompany.folder;
             var worklist = certaincompany.worklist;
             var code = certaincompany.code;
             var html = '';
             var worklinklist = [];
             if (code == companycode) {
+                var count = 0;
                 for (var i in worklist) {
                     var work = worklist[i];
                     var suffix = work.suffix;
@@ -137,22 +155,31 @@
                     switch (suffix) {
                         case 'docx':
                         case 'pptx':
-                        case 'xlsx': { officeApi = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/"; }; break;
+                        case 'xlsx': { officeApi = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/company/"; }; break;
                         case 'pdf': {
-                            officeApi = "/resume/View/";
+                            officeApi = "/resume/View/company/";
                         }
                     }
                     var path = officeApi + folder + '/' + name;
                     if (show) {
                         html += ' <dd><a lay-href="' + path + '" >' + name + '</a></dd>';
                     }
+                    count++;
+                }
+                if (count == 0) {
+                    $("#list-work").remove();
                 }
             }
 
             $("#worklist").append(html);
             render();
         }
-
+        function AddProjectList(companycode) {
+            var showprojectlist = certaincompany.showprojectlist;
+            if (!showprojectlist) {
+                $("#list-project").remove();
+            }
+        }
         function render() {
             layui.use('element', function () {
                 var element = layui.element;

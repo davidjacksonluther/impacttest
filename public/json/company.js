@@ -14,7 +14,8 @@ var companylist = [
         "coverletter":"en",
         "coverletter_cn":"Cover Letter_David Ding.docx",
         "coverletter_en":"Cover Letter_David Ding_Chinese.docx",
-        "worklist":[]
+        "worklist":[],
+        "showprojectlist":true
     },
     {
         "name_cn": [
@@ -45,6 +46,7 @@ var companylist = [
             "name":"Analysis.xlsx",
             "suffix":"xlsx",
             "show":false
-        }]
+        }],
+        "showprojectlist":true
     }
 ]

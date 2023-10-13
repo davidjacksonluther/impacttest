@@ -141,3 +141,17 @@ function getUrlArg(sKey) {
     }
     return "";
 }
+
+/**
+ * 直接找到最近的指定父元素
+ * @param {*} TagName 
+ * @returns 
+ */
+$.prototype.parentByTag = function(TagName){
+    var parent = $(this).parent();
+    if(parent.prop('tagName')&&parent.prop('tagName').toLowerCase()==TagName.toLowerCase()){
+        return parent;
+    }else{
+        return $(parent).parentByTag(TagName);
+    }
+}

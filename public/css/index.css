@@ -76,6 +76,7 @@ ul.layui-nav.layui-nav-tree {
     padding: calc(50vh - 80px) calc(50vw - 400px);
     box-sizing: border-box;
     background: url(../img/bg.png) no-repeat 0 200px;
+    background-size: 100vw;
     width: 100vw;
     background-color: #FFF;
 }
@@ -90,4 +91,9 @@ ul.layui-nav.layui-nav-tree {
 
 #app {
     display: none;
+}
+
+
+#data-cloud{
+    height: calc( 100% - 23px );
 }
