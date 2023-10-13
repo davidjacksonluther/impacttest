@@ -152,6 +152,11 @@ $.prototype.parentByTag = function(TagName){
     if(parent.prop('tagName')&&parent.prop('tagName').toLowerCase()==TagName.toLowerCase()){
         return parent;
     }else{
-        return $(parent).parentByTag(TagName);
+        if(parent.length!=0){
+            return $(parent).parentByTag(TagName);
+        }else{
+            return null;
+        }
+      
     }
 }

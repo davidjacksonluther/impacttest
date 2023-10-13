@@ -4,11 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>David Ding's Home Page</title>
-    <link rel="stylesheet" href="public/css/layui.css">
-    <link rel="stylesheet" href="public/css/bootstrap.css">
-    <link rel="stylesheet" href="public/css/bootstrap-theme.css">
-    <link rel="stylesheet" href="public/css/index.css">
-    <link rel="shortcut icon" href="public/img/logo.ico">
+    <link rel="stylesheet"
+        href="public/css/layui.css">
+    <link rel="stylesheet"
+        href="public/css/bootstrap.css">
+    <link rel="stylesheet"
+        href="public/css/bootstrap-theme.css">
+    <link rel="stylesheet"
+        href="public/css/index.css">
+    <link rel="shortcut icon"
+        href="public/img/logo.ico">
 </head>
 
 <body>
@@ -20,22 +25,30 @@
 
     </div>
     <div id="app">
-        <ul class="layui-nav layui-nav-tree" lay-filter="nav" id="menu-tree">
+        <ul class="layui-nav layui-nav-tree"
+            lay-filter="nav"
+            id="menu-tree">
             <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
             <li class="layui-nav-item layui-this">
-                <a lay-href="" id="ResumePath">简历 / Resume</a>
+                <a lay-href=""
+                    id="ResumePath">简历 / Resume</a>
             </li>
             <li class="layui-nav-item">
-                <a lay-href="" id="CoverLetterPath">求职信 / Cover Letter</a>
+                <a lay-href=""
+                    id="CoverLetterPath">求职信 / Cover Letter</a>
             </li>
-            <li class="layui-nav-item" id="list-work">
+            <li class="layui-nav-item"
+                id="list-work">
                 <a lay-href="">作品 / Work</a>
-                <dl class="layui-nav-child" id="worklist">
+                <dl class="layui-nav-child"
+                    id="worklist">
                 </dl>
             </li>
-            <li class="layui-nav-item" id="list-project">
+            <li class="layui-nav-item"
+                id="list-project">
                 <a lay-href="">Git项目 / Git Project </a>
-                <dl class="layui-nav-child" id="projectlist">
+                <dl class="layui-nav-child"
+                    id="projectlist">
                     <dd><a lay-href="https://gitee.com/david-jackson-luther-king/data-cloud/tree/master">数据云 / Data
                             Cloud</a>
                     </dd>
@@ -47,7 +60,8 @@
         </div>
     </div>
     <!-- </div> -->
-    <script type="text/html" id="data-cloud-script">
+    <script type="text/html"
+        id="data-cloud-script">
         <div class="layui-tab layui-tab-card" id="data-cloud">
             <ul class="layui-tab-title">
               <li class="layui-this">项目设计 / Project Design</li>
@@ -81,12 +95,16 @@
         </div>
     </script>
 
-    <script type="text/javascript" src="public/json/company.js"></script>
+    <script type="text/javascript"
+        src="public/json/company.js"></script>
     <!-- <script type="text/javascript" src="public/js/vue.js"></script> -->
     <!-- <script type="text/javascript" src="public/js/pdf.js"></script> -->
-    <script type="text/javascript" src="public/layui.js"></script>
-    <script type="text/javascript" src="public/js/jquery.js"></script>
-    <script type="text/javascript" src="public/js/util.js"></script>
+    <script type="text/javascript"
+        src="public/layui.js"></script>
+    <script type="text/javascript"
+        src="public/js/jquery.js"></script>
+    <script type="text/javascript"
+        src="public/js/util.js"></script>
     <script type="text/javascript">
         var certaincompany = {};
 
@@ -145,8 +163,8 @@
                                 if (href == "index.html" || href == "#") {
                                     return;
                                 }
-
-                                if ($(this).parentByTag('dl').attr("id") == "projectlist") {
+                                var parent = $(this).parentByTag('dl');
+                                if (parent && parent.attr("id") == "projectlist") {
                                     $(".main-board").html($("#data-cloud-script").html());
                                 } else {
                                     $(".main-board").html("<iframe src=\"" + href + "\"></iframe>");

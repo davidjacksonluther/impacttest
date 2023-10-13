@@ -22,7 +22,7 @@ ul.layui-nav.layui-nav-tree {
     width: calc(100vw - 203px);
     height: 100vh;
     overflow: auto;
-    padding: 0 10px;
+    padding: 0 0 0 10px;
     box-sizing: border-box;
 }
 
@@ -114,4 +114,10 @@ ul {
 
 #data-cloud .layui-code {
     margin: 0 28px;
+}
+
+.layui-nav-tree .layui-nav-child a {
+    display: block;
+    padding-left: 42px;
+    font-size: 12px;
 }
