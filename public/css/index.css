@@ -111,3 +111,7 @@ ul {
 #data-cloud .layui-card-body {
     height: calc(100% - 43px);
 }
+
+#data-cloud .layui-code {
+    margin: 0 28px;
+}
