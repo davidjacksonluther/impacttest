@@ -105,6 +105,7 @@ ul {
 }
 
 #data-cloud .layui-tab-item {
+    overflow-y: auto;
     height: 100%;
 }
 
