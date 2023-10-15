@@ -14,7 +14,7 @@
         href="public/css/index.css">
     <link rel="shortcut icon"
         href="public/img/logo.ico">
-        <meta name="viewport">
+    <meta name="viewport">
 </head>
 
 <body>
@@ -150,12 +150,12 @@
                     var coverletter = "";
                     if (coverletterflag) {
                         coverletter = company["coverletter_" + coverletterflag];
-                        CoverLetterPath = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/" + folder + "/" + coverletter;
+                        CoverLetterPath = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/Company/" + folder + "/" + coverletter;
                         $("#CoverLetterPath").attr("lay-href", CoverLetterPath);
                     }
 
                     if (code == companycode) {
-                        ResumePath = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/" + folder + "/" + resume;
+                        ResumePath = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/Company/" + folder + "/" + resume;
                         $("#ResumePath").attr("lay-href", ResumePath);
                         $(".main-board").html("<iframe src=\"" + ResumePath + "\"></iframe>");
                         $(document).on({
