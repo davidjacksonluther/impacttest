@@ -35,7 +35,7 @@ var companylist = [
         "coverletter_en":"Cover Letter.docx",
         "worklist":[
             {
-            "name":"Competitor Analysis and Solutions.pptx",
+            "name":"Competitor Analysis.pptx",
             "suffix":"pptx",
             "show":true
         },{
