@@ -123,6 +123,14 @@ ul {
     font-size: 12px;
 }
 
+#phone,
+#email {
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 18px;
+}
+
+
 #l-contact {
     position: fixed;
     bottom: 0;
@@ -132,7 +140,3 @@ ul {
     padding: 10px;
     z-index: 10;
 }
-
-#phone {}
-
-#email {}
