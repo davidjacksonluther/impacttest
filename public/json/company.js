@@ -48,5 +48,27 @@ var companylist = [
             "show":false
         }],
         "showprojectlist":true
+    },{
+        "name_cn": [
+            "开云"
+        ],
+        "name_en": [
+            "Kering"
+        ],
+        "code": "0422",
+        "folder": "McDonalds",
+        "resume":"en",
+        "resume_cn": "",
+        "resume_en": "Resume_David.docx",
+        "coverletter":"en",
+        "coverletter_cn":"",
+        "coverletter_en":"Cover Letter.docx",
+        "worklist":[
+           {
+            "name":"Ideas On Nowadays Digtial Marketing.pdf",
+            "suffix":"pdf",
+            "show":true
+        }],
+        "showprojectlist":true
     }
 ]
