@@ -56,7 +56,7 @@ var companylist = [
             "Kering"
         ],
         "code": "0422",
-        "folder": "McDonalds",
+        "folder": "Kering",
         "resume":"en",
         "resume_cn": "",
         "resume_en": "Resume_David.docx",
