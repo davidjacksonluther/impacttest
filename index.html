@@ -71,7 +71,7 @@
             </ul>
             <div class="layui-tab-content" style="height: calc( 100% - 50px) ;">
               <div class="layui-tab-item layui-show"  style="height: 100%;">
-                <iframe src="https://view.officeapps.live.com/op/view.aspx?src=https://davidjacksonluther.github.io/resume/View/Project/DataCloud/Data Cloud - Phase Recomendation System.pptx" style="height:100%"></iframe>
+                <iframe src="https://view.officeapps.live.com/op/view.aspx?src=https://121.37.133.25/resume/View/Project/DataCloud/Data Cloud - Phase Recomendation System.pptx" style="height:100%"></iframe>
               </div>
               <div class="layui-tab-item">  
                 <div class="layui-code">
@@ -111,11 +111,13 @@
 
 
         layui.use(["element"], function () {
-            var loadingindex = layer.load(1); //风格1的加载
+            window.loadingindex = layer.load(1); //风格1的加载
             var companycode = getUrlArg("id");
             console.log(companycode);
 
-            if (!companycode) {
+
+
+            if (!CheckCode(companycode)) {
                 $("#cnmsg").text("对不起！您无权限查看我的简历!");
                 $("#enmsg").text("Sorry! Don't you have any access to my resume!");
                 $("#wait-inner").css({
@@ -125,18 +127,31 @@
                 });
                 layer.close(loadingindex);
                 return;
+            } else {
+                setTimeout(function () {
+                    $("#wait").fadeOut("slow");
+                    $("#app").show();
+                    layer.close(loadingindex);
+                }, 0);
             }
-            setTimeout(function () {
-                $("#wait").fadeOut("slow");
-                $("#app").show();
-                layer.close(loadingindex);
-            }, 0);
+
             ShowResume(companycode);
             AddWorkList(companycode);
             AddProjectList(companycode);
         });
     </script>
     <script type="text/javascript">
+        function CheckCode(companycode) {
+            var check = false;
+            for (var i in companylist) {
+                var company = companylist[i];
+                var code = company.code;
+                if (code == companycode) {
+                    check = true;
+                }
+            }
+            return check;
+        }
         function ShowResume(companycode) {
             for (var i in companylist) {
                 var company = companylist[i];
@@ -150,12 +165,12 @@
                     var coverletter = "";
                     if (coverletterflag) {
                         coverletter = company["coverletter_" + coverletterflag];
-                        CoverLetterPath = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/Company/" + folder + "/" + coverletter;
+                        CoverLetterPath = "https://view.officeapps.live.com/op/view.aspx?src=http://121.37.133.25/resume/View/Company/" + folder + "/" + coverletter;
                         $("#CoverLetterPath").attr("lay-href", CoverLetterPath);
                     }
 
                     if (code == companycode) {
-                        ResumePath = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/Company/" + folder + "/" + resume;
+                        ResumePath = "https://view.officeapps.live.com/op/view.aspx?src=http://121.37.133.25/resume/View/Company/" + folder + "/" + resume;
                         $("#ResumePath").attr("lay-href", ResumePath);
                         $(".main-board").html("<iframe src=\"" + ResumePath + "\"></iframe>");
                         $(document).on({
@@ -195,7 +210,7 @@
                     switch (suffix) {
                         case 'docx':
                         case 'pptx':
-                        case 'xlsx': { officeApi = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/Company/"; }; break;
+                        case 'xlsx': { officeApi = "https://view.officeapps.live.com/op/view.aspx?src=http://121.37.133.25/resume/View/Company/"; }; break;
                         case 'pdf': {
                             officeApi = "/resume/View/Company/";
                         }
@@ -213,6 +228,7 @@
 
             $("#worklist").append(html);
             render();
+
         }
         function AddProjectList(companycode) {
             var showprojectlist = certaincompany.showprojectlist;
