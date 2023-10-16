@@ -28,7 +28,7 @@ var companylist = [
         "code": "0423",
         "folder": "McDonalds",
         "resume":"cn",
-        "resume_cn": "简历_丁伟_20230920.docx",
+        "resume_cn": "简历_丁伟David.docx",
         "resume_en": "",
         "coverletter":"en",
         "coverletter_cn":"求职信.docx",
