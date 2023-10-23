@@ -70,5 +70,27 @@ var companylist = [
             "show":true
         }],
         "showprojectlist":true
+    },{
+        "name_cn": [
+            "德高广告"
+        ],
+        "name_en": [
+            "JCDecaux"
+        ],
+        "code": "0421",
+        "folder": "JCDecaux",
+        "resume":"en",
+        "resume_cn": "",
+        "resume_en": "Resume_David.docx",
+        "coverletter":"en",
+        "coverletter_cn":"",
+        "coverletter_en":"Cover Letter.docx",
+        "worklist":[
+           {
+            "name":"Ideas On Nowadays Digtial Marketing.pdf",
+            "suffix":"pdf",
+            "show":true
+        }],
+        "showprojectlist":true
     }
 ]
