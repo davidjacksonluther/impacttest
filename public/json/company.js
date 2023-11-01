@@ -84,13 +84,14 @@ var companylist = [
         "resume_en": "Resume_David.docx",
         "coverletter":"en",
         "coverletter_cn":"",
-        "coverletter_en":"Cover Letter.docx",
+        "coverletter_en":"",
         "worklist":[
-           {
-            "name":"Ideas On Nowadays Digtial Marketing.pdf",
-            "suffix":"pdf",
-            "show":true
-        }],
+        //    {
+        //     "name":"Ideas On Nowadays Digtial Marketing.pdf",
+        //     "suffix":"pdf",
+        //     "show":true
+        // }
+        ],
         "showprojectlist":true
     }
 ]

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>David Ding's Home Page</title>
+    <title>David Ding's Page</title>
     <link rel="stylesheet"
         href="public/css/layui.css">
     <link rel="stylesheet"
@@ -36,7 +36,7 @@
                 <a lay-href=""
                     id="ResumePath">简历 / Resume</a>
             </li>
-            <li class="layui-nav-item">
+            <li class="layui-nav-item" id="CoverLetterLayer">
                 <a lay-href=""
                     id="CoverLetterPath">求职信 / Cover Letter</a>
             </li>
@@ -174,8 +174,13 @@
                     var coverletter = "";
                     if (coverletterflag) {
                         coverletter = company["coverletter_" + coverletterflag];
-                        CoverLetterPath = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/Company/" + folder + "/" + coverletter;
-                        $("#CoverLetterPath").attr("lay-href", CoverLetterPath);
+                        if(!coverletter){
+                            $("#CoverLetterLayer").hide();
+                        }else{
+                            CoverLetterPath = "https://view.officeapps.live.com/op/view.aspx?src=http://davidjacksonluther.github.io/resume/View/Company/" + folder + "/" + coverletter;
+                            $("#CoverLetterPath").attr("lay-href", CoverLetterPath);
+                        }
+                       
                     }
 
                     if (code == companycode) {
